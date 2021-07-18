@@ -14,7 +14,7 @@
 use App\TheLoai;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('trangchu');
 });
 
 Route::get('admin/dangnhap', 'UserController@getdangnhapAdmin');
@@ -90,3 +90,22 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function() {
         Route::get('loaitin/{idTheLoai}', 'AjaxController@getLoaiTin');
     });
 });
+
+Route::get('trangchu', 'PagesController@trangchu');
+Route::get('lienhe', 'PagesController@lienhe');
+Route::get('loaitin/{id}/{TenKhongDau}.html', 'PagesController@loaitin');
+Route::get('tintuc/{id}/{TieuDeKhongDau}.html', 'PagesController@tintuc');
+
+Route::get('dangnhap', 'PagesController@getDangnhap');
+Route::post('dangnhap', 'PagesController@postDangnhap');
+Route::get('dangxuat', 'PagesController@getDangxuat');
+
+Route::get('nguoidung', 'PagesController@getNguoiDung');
+Route::post('nguoidung', 'PagesController@postNguoidung');
+
+Route::get('dangky', 'PagesController@getDangky');
+Route::post('dangky', 'PagesController@postDangky');
+
+Route::post('comment/{id}', 'CommentController@postComment');
+
+Route::match(['get', 'post'], 'timkiem','PagesController@timkiem');
